@@ -1,0 +1,63 @@
+CREATE DATABASE alta_online_shop; //membuat database
+
+USE alta_online_shop; // mengakses database yang sudah dibuat
+
+CREATE TABLE pelanggan( // membuat tabel pelanggan
+-> id_pelanggan INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+-> nama VARCHAR(100),
+-> alamat VARCHAR(100),
+-> tanggal_lahir : DATE,
+-> status_user : VARCHAR(100),
+-> gender : VARCHAR(100),
+-> created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+-> update_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE product( // membuat tabel product
+-> id_product INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+-> product_name VARCHAR(100),
+-> product_type VARCHAR(100),
+-> product_description VARCHAR(255),
+-> operator  VARCHAR(100)
+);
+
+CREATE TABLE payment_method(//membuat metode pembayaran
+-> id_payment_method    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+-> nama_payment   VARCHAR(255),
+-> FOREIGN KEY fk_transaksi(id_transaksi)
+   REFERENCES transaksi(id_transaksi)
+); 
+
+CREATE TABLE transaksi( // membuat tabel transaksi
+-> id_transaksi INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+-> banyak_barang      INT,
+-> total_transaksi    INT,
+-> history_transaksi VARCHAR(100)
+-> FOREIGN KEY fk_pelanggan(id_user)
+   REFERENCES pelanggan(id_transaksi)
+-> FOREIGN KEY fk_payment_method(id_payment_method)
+   REFERENCES payment_method(id_payment_method)
+);
+
+CREATE TABLE detail_transaction(//membuat detail transaksi
+-> id_detail_transaksi INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+-> FOREIGN KEY fk_transaksi(id_transaksi)
+   REFERENCES transaksi(id_transaksi)
+-> FOREIGN KEY fk_produk(id_produk)
+   REFERENCES produk(id_produk)
+);
+
+CREATE TABLE kurir( // membuat tabel kurir
+-> id_kurir INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+-> nama_kurir VARCHAR(100),
+-> created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+-> update_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE kurir //tambah kolom pada tabel kurir
+  ADD COLUMN ongkos_dasar INT;
+
+ALTER TABLE kurir //rename tabel kurir
+  RENAME TO shipping;
+
+DROP TABLE shipping; //hapus tabel shipping

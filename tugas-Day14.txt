@@ -1,0 +1,145 @@
+use day14;
+// Create
+// Operator
+db.createCollection("operator");
+db.operator.insertMany([
+    {"_id":1,"nama": "Telkomsel","created_at": new Date(),"updated_at": new Date()},
+    {"_id":2,"nama": "By-U","created_at": new Date(),"updated_at": new Date()},
+    {"_id":3,"nama": "XL","created_at": new Date(),"updated_at": new Date()},
+    {"_id":4,"nama": "Indosat","created_at": new Date(),"updated_at": new Date()},
+    {"_id":5,"nama": "Smartfren","created_at": new Date(),"updated_at": new Date()}
+]);
+// Product Type
+db.createCollection("product_type");
+db.product_type.insertMany([
+    {"_id":1,"tipe":"Pulsa","created_at": new Date(),"updated_at": new Date()},
+    {"_id":2,"tipe":"Voucher","created_at": new Date(),"updated_at": new Date()},
+    {"_id":3,"tipe":"Paketan","created_at": new Date(),"updated_at": new Date()},
+]);
+// Product
+db.createCollection("product");
+db.product.insertMany([
+    {"_id":1,"nama":"Pulsa 100k XL","product_type_id":1,"operator_id":3,"code":"PLSXL-100","status":"ready","created_at": new Date(),"updated_at": new Date()},
+    {"_id":2,"nama":"Pulsa 50k XL","product_type_id":1,"operator_id":3,"code":"PLSXL-50","status":"ready","created_at": new Date(),"updated_at": new Date()},
+    {"_id":3,"nama":"Voucher 100k Telkomsel","product_type_id":2,"operator_id":1,"code":"VCRTLMS-100","status":"ready","created_at": new Date(),"updated_at": new Date()},
+    {"_id":4,"nama":"Voucher 50k Telkomsel","product_type_id":2,"operator_id":1,"code":"VCRTLMS-50","status":"ready","created_at": new Date(),"updated_at": new Date()},
+    {"_id":5,"nama":"Voucher 25k Telkomsel","product_type_id":2,"operator_id":1,"code":"VCRTLMS-25","status":"ready","created_at": new Date(),"updated_at": new Date()},
+    {"_id":6,"nama":"Paketan 100k Indosat","product_type_id":3,"operator_id":4,"code":"PKTIDST-100","status":"ready","created_at": new Date(),"updated_at": new Date()},
+    {"_id":7,"nama":"Paketan 50k Indosat","product_type_id":3,"operator_id":4,"code":"PKTIDST-50","status":"ready","created_at": new Date(),"updated_at": new Date()},
+    {"_id":8,"nama":"Paketan 25k Indosat","product_type_id":3,"operator_id":4,"code":"PKTIDST-25","status":"ready","created_at": new Date(),"updated_at": new Date()}
+]);
+// Product Description
+db.createCollection("product_description");
+db.product_description.insertMany([
+    {"_id":1,"description":"Pulsa seharga 100.000 operator XL","created_at": new Date(),"updated_at": new Date()},
+    {"_id":2,"description":"Pulsa seharga 50.000 operator XL","created_at": new Date(),"updated_at": new Date()},
+    {"_id":3,"description":"Voucher seharga 100.000 operator Telkomsel","created_at": new Date(),"updated_at": new Date()},
+    {"_id":4,"description":"Voucher seharga 50.000 operator Telkomsel","created_at": new Date(),"updated_at": new Date()},
+    {"_id":5,"description":"Voucher seharga 25.000 operator Telkomsel","created_at": new Date(),"updated_at": new Date()},
+    {"_id":6,"description":"Paketan seharga 100.000 operator Indosat","created_at": new Date(),"updated_at": new Date()},
+    {"_id":7,"description":"Paketan seharga 50.000 operator Indosat","created_at": new Date(),"updated_at": new Date()},
+    {"_id":8,"description":"Paketan seharga 25.000 operator Indosat","created_at": new Date(),"updated_at": new Date()}
+]);
+
+// Payment Method
+db.createCollection("payment_method");
+db.payment_method.insertMany([
+    {"_id":1,"nama metode": "Tunai","created_at": new Date(),"updated_at": new Date()},
+    {"_id":2,"nama metode": "Transfer Bank","created_at": new Date(),"updated_at": new Date()},
+    {"_id":3,"nama metode": "Dompet Digital","created_at": new Date(),"updated_at": new Date()}
+]);
+// User
+db.createCollection("user");
+db.user.insertMany([
+    {"_id":1,"nama":"Wayan","address":"Denpasar","gender":"Pria","created_at": new Date(),"updated_at": new Date()},
+    {"_id":2,"nama":"Putu","address":"Bandung","gender":"Wanita","created_at": new Date(),"updated_at": new Date()},
+    {"_id":3,"nama":"Gede","address":"Australia","gender":"Pria","created_at": new Date(),"updated_at": new Date()},
+    {"_id":4,"nama":"Made","address":"Jakarta","gender":"Wanita","created_at": new Date(),"updated_at": new Date()},
+    {"_id":5,"nama":"Ketut","address":"New York","gender":"Pria","created_at": new Date(),"updated_at": new Date()}
+]);
+// Transaksi
+db.createCollection("transaction");
+db.transaction.insertMany([
+    {"_id":1,"user_id":1,"paymentmethod_id":3,"status":"Pending","total_qty":3,"total_price":200000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":2,"user_id":1,"paymentmethod_id":1,"status":"Masuk","total_qty":3,"total_price":100000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":3,"user_id":1,"paymentmethod_id":2,"status":"Pending","total_qty":3,"total_price":75000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":4,"user_id":2,"paymentmethod_id":3,"status":"Masuk","total_qty":3,"total_price":200000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":5,"user_id":2,"paymentmethod_id":1,"status":"Pending","total_qty":3,"total_price":100000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":6,"user_id":2,"paymentmethod_id":1,"status":"Masuk","total_qty":3,"total_price":75000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":7,"user_id":3,"paymentmethod_id":3,"status":"Pending","total_qty":3,"total_price":200000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":8,"user_id":3,"paymentmethod_id":1,"status":"Pending","total_qty":3,"total_price":100000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":9,"user_id":3,"paymentmethod_id":2,"status":"Pending","total_qty":3,"total_price":75000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":10,"user_id":4,"paymentmethod_id":1,"status":"Masuk","total_qty":3,"total_price":200000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":11,"user_id":4,"paymentmethod_id":1,"status":"Pending","total_qty":3,"total_price":100000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":12,"user_id":4,"paymentmethod_id":3,"status":"Masuk","total_qty":3,"total_price":75000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":13,"user_id":5,"paymentmethod_id":1,"status":"Pending","total_qty":3,"total_price":200000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":14,"user_id":5,"paymentmethod_id":3,"status":"Masuk","total_qty":3,"total_price":100000,"created_at": new Date(),"updated_at": new Date()},
+    {"_id":15,"user_id":5,"paymentmethod_id":2,"status":"Pending","total_qty":3,"total_price":75000,"created_at": new Date(),"updated_at": new Date()}
+]);
+// Transaction Detail
+db.createCollection("transaction_detail");
+db.transaction_detail.insertMany([
+    {"transaction_id":1,"product_id":1,"status":"Pending","qty":1,"price":100000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":1,"product_id":4,"status":"Pending","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":1,"product_id":7,"status":"Pending","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":2,"product_id":2,"status":"Masuk","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":2,"product_id":5,"status":"Masuk","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":2,"product_id":8,"status":"Masuk","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":3,"product_id":5,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":3,"product_id":8,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":3,"product_id":8,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":4,"product_id":1,"status":"Masuk","qty":1,"price":100000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":4,"product_id":4,"status":"Masuk","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":4,"product_id":7,"status":"Masuk","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":5,"product_id":2,"status":"Pending","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":5,"product_id":5,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":5,"product_id":8,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":6,"product_id":5,"status":"Masuk","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":6,"product_id":8,"status":"Masuk","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":6,"product_id":8,"status":"Masuk","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":7,"product_id":1,"status":"Pending","qty":1,"price":100000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":7,"product_id":4,"status":"Pending","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":7,"product_id":7,"status":"Pending","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":8,"product_id":2,"status":"Pending","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":8,"product_id":5,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":8,"product_id":8,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":9,"product_id":5,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":9,"product_id":8,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":9,"product_id":8,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":10,"product_id":1,"status":"Masuk","qty":1,"price":100000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":10,"product_id":4,"status":"Masuk","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":10,"product_id":7,"status":"Masuk","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":11,"product_id":2,"status":"Pending","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":11,"product_id":5,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":11,"product_id":8,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":12,"product_id":5,"status":"Masuk","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":12,"product_id":8,"status":"Masuk","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":12,"product_id":8,"status":"Masuk","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":13,"product_id":1,"status":"Pending","qty":1,"price":100000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":13,"product_id":4,"status":"Pending","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":13,"product_id":7,"status":"Pending","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":14,"product_id":2,"status":"Masuk","qty":1,"price":50000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":14,"product_id":5,"status":"Masuk","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":14,"product_id":8,"status":"Masuk","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":15,"product_id":5,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":15,"product_id":8,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()},
+    {"transaction_id":15,"product_id":8,"status":"Pending","qty":1,"price":25000,"created_at": new Date(),"updated_at": new Date()}
+]);
+
+
+// Read 
+db.user.find({gender:"Pria"});
+db.product.find({_id:3});
+db.user.find({gender:"Wanita"}).count();
+db.user.find().sort({nama:1});
+db.product.find().limit(5);
+
+
+// Update
+db.product.updateOne({_id:1}, {$set: {nama:"product dummy",updated_at: new Date()}});
+db.transaction_detail.updateMany({product_id:1}, {$set: {qty:3,updated_at: new Date()}});
+
+
+// Delete
+db.product.deleteOne({_id:1});
+db.product.deleteOne({product_type_id:1});
